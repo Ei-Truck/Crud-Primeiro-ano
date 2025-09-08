@@ -2,19 +2,19 @@ package model;
 
 //Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
 //ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
-public class Unidade {
+public class Administrador {
     //atributos
     private int id;
     private String nome;
-    private int id_segmento;
-    private int id_endereco;
+    private String email;
+    private String senha;
 
     //método construtor
-    public Unidade(int id, String nome, int id_segmento, int id_endereco) {
+    public Administrados(int id, String nome, String email, String senha){
         this.id = id;
         this.nome = nome;
-        this.id_segmento = id_segmento;
-        this.id_endereco = id_endereco;
+        this.email = email;
+        this.senha = senha;
     }
 
     //getters e setters
@@ -32,27 +32,27 @@ public class Unidade {
         this.nome = nome;
     }
 
-    public int getId_segmento() {
-        return id_segmento;
+    public String getEmail() {
+        return email;
     }
-    public void setId_segmento(int id_segmento) {
-        this.id_segmento = id_segmento;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getId_endereco() {
-        return id_endereco;
+    public String getSenha() {
+        return senha;
     }
-    public void setId_endereco(int id_endereco) {
-        this.id_endereco = id_endereco;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     //toString
-    public String toString() {
+    public String toSring() {
         return String.format("""
-            Unidade:
+            Administrador:
                 Id = %d
                 Nome = %s
-                ID Segmento = %d
-                ID Endereco = %d""", this.id, this.nome, this.id_segmento, this.id_endereco);
+                Email = %s
+                Senha = %s""", this.id, this.nome, this.email, this.senha);
     }
 }
