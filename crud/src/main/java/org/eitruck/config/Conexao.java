@@ -3,10 +3,11 @@ package org.eitruck.config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+//dependencias do .env estão no pom.xml na raiz do projeto
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Conexao {
-    //atributo
+    //atributo Connection
     Connection conn;
 
     //carrega o .env
