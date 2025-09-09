@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 public class Transportadora{
     // ATRIBUTOS
     private int id;
@@ -7,7 +7,7 @@ public class Transportadora{
     private String email;
     public Transportadora(int id, String cnpj, String nome, String email){
         this.id=id;
-        this.cep=cnpj;
+        this.cnpj=cnpj;
         this.nome=nome;
         this.email=email;
     }

@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 public class Endereco{
     private int id;
     private String cep;

@@ -1,4 +1,6 @@
-package model;
+package org.eitruck.model;
+
+import java.time.LocalDate;
 
 public class Analista {
     // ATRIBUTOS
@@ -9,10 +11,10 @@ public class Analista {
     private String senha;
     private String cargo;
     private String telefone;
-    private Localdate dt_contratacao;
+    private LocalDate dt_contratacao;
     // CONSTRUTOR
 
-    public Analista(int id, String nome, String cpf, String email, String senha, String cargo, String telefone, Localdate dt_contratacao) {
+    public Analista(int id, String nome, String cpf, String email, String senha, String cargo, String telefone, LocalDate dt_contratacao) {
         this.id = id;
         this.nome = nome;
         this.cpf=cpf;
@@ -47,7 +49,7 @@ public class Analista {
         return cargo;
     }
 
-    public Localdate getDt_contratacao() {
+    public LocalDate getDt_contratacao() {
         return dt_contratacao;
     }
 

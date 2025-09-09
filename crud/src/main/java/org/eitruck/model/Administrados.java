@@ -1,4 +1,5 @@
-package model;
+package org.eitruck.model;
+
 public class Administrados {
     private int id;
     private String nome;
@@ -34,5 +35,4 @@ public class Administrados {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public
 }

@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 public class SegmentoTransp{
     private int id;
     private int id_transportadora;
@@ -18,11 +18,11 @@ public class SegmentoTransp{
     }
 
     public int getId_transportadora() {
-        return transportadora;
+        return id_transportadora;
     }
 
-    public int getId_egmento() {
-        return segmento;
+    public int getId_segmento() {
+        return id_segmento;
     }
 
     public String getStatus() {

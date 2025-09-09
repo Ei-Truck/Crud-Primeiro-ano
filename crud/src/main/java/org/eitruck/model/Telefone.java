@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 public class Telefone {
     private int id;
     private int ddi;
@@ -7,7 +7,7 @@ public class Telefone {
     private int id_analista;
     private int id_transportadora;
     //private int id_motorista;
-    public Telefone(int id, int ddi, int ddd, int numero, int id_analista int id_transportadora){
+    public Telefone(int id, int ddi, int ddd, int numero, int id_analista, int id_transportadora){
         this.id=id;
         this.ddi=ddi;
         this.ddd=ddd;

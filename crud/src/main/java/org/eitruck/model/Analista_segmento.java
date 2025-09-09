@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 public class Analista_segmento{
     private int id;
     private int id_Analista;
