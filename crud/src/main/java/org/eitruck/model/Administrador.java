@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 
 //Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
 //ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
@@ -10,7 +10,7 @@ public class Administrador {
     private String senha;
 
     //método construtor
-    public Administrados(int id, String nome, String email, String senha){
+    public Administrador(int id, String nome, String email, String senha){
         this.id = id;
         this.nome = nome;
         this.email = email;

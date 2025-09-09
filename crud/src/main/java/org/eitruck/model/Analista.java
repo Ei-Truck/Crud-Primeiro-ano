@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 
 import java.time.LocalDate;
 

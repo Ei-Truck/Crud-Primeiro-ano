@@ -1,4 +1,4 @@
-package model;
+package org.eitruck.model;
 
 //============================TABELA EM REVISÃO==============================
 //Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models

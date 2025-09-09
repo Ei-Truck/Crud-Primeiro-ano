@@ -1,8 +1,8 @@
-package model;
+package org.eitruck.model;
 
 //Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
 //ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
-public class Analista_segmento {
+public class AnalistaSegmento {
     //atributos
     private int id;
     private int id_Analista;
@@ -10,7 +10,7 @@ public class Analista_segmento {
     private String cargo;
 
     //método construtor
-    public Analista_segmento(int id, int id_Analista, int id_segmento, String cargo) {
+    public AnalistaSegmento(int id, int id_Analista, int id_segmento, String cargo) {
         this.id = id;
         this.id_Analista = id_Analista;
         this.id_segmento = id_segmento;
