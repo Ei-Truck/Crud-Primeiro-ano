@@ -2,10 +2,8 @@ package org.eitruck.model;
 
 import java.time.LocalDate;
 
-//Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
-//ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
 public class Analista {
-    //atributos
+    // atributos
     private int id;
     private String nome;
     private String cpf;
@@ -15,19 +13,19 @@ public class Analista {
     private String telefone;
     private LocalDate dt_contratacao;
 
-    //método construtor
+    // construtor
     public Analista(int id, String nome, String cpf, String email, String senha, String cargo, String telefone, LocalDate dt_contratacao) {
         this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.senha = senha;
+        setCpf(cpf);         // validação
+        setEmail(email);     // validação
+        setSenha(senha);     // validação
         this.cargo = cargo;
-        this.telefone = telefone;
+        setTelefone(telefone); // validação
         this.dt_contratacao = dt_contratacao;
     }
 
-    //getters e setters
+    // getters e setters
     public int getId() {
         return id;
     }
@@ -46,6 +44,9 @@ public class Analista {
         return cpf;
     }
     public void setCpf(String cpf) {
+        if (!cpf.matches("\\d{11}")) {
+            throw new IllegalArgumentException("CPF inválido. Deve conter 11 dígitos numéricos.");
+        }
         this.cpf = cpf;
     }
 
@@ -53,6 +54,9 @@ public class Analista {
         return email;
     }
     public void setEmail(String email) {
+        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            throw new IllegalArgumentException("Email inválido.");
+        }
         this.email = email;
     }
 
@@ -60,6 +64,9 @@ public class Analista {
         return senha;
     }
     public void setSenha(String senha) {
+        if (!senha.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
+            throw new IllegalArgumentException("Senha inválida. Mínimo 8 caracteres, incluindo letras e números.");
+        }
         this.senha = senha;
     }
 
@@ -74,6 +81,9 @@ public class Analista {
         return telefone;
     }
     public void setTelefone(String telefone) {
+        if (!telefone.matches("\\d{10,11}")) {
+            throw new IllegalArgumentException("Telefone inválido. Deve conter 10 ou 11 dígitos.");
+        }
         this.telefone = telefone;
     }
 
@@ -84,7 +94,8 @@ public class Analista {
         this.dt_contratacao = dt_contratacao;
     }
 
-    //toString
+    // toString
+    @Override
     public String toString() {
         return String.format("""
             Analista:
@@ -94,6 +105,7 @@ public class Analista {
                 Email = %s
                 Cargo = %s
                 Telefone = %s
-                Data de Contratação = %s""", this.id, this.nome, this.cpf, this.email, this.cargo, this.telefone, this.dt_contratacao);
+                Data de Contratação = %s""",
+                this.id, this.nome, this.cpf, this.email, this.cargo, this.telefone, this.dt_contratacao);
     }
 }

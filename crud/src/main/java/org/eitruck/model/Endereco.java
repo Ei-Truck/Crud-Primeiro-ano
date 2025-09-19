@@ -1,9 +1,7 @@
 package org.eitruck.model;
 
-//Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
-//ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
 public class Endereco {
-    //atributos
+    // atributos
     private int id;
     private String cep;
     private String rua;
@@ -13,10 +11,10 @@ public class Endereco {
     private String estado;
     private String pais;
 
-    //método construtor
+    // construtor
     public Endereco(int id, String cep, String rua, int numero, String bairro, String cidade, String estado, String pais) {
         this.id = id;
-        this.cep = cep;
+        setCep(cep); // validação
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -25,7 +23,7 @@ public class Endereco {
         this.pais = pais;
     }
 
-    //getters e setters
+    // getters e setters
     public int getId() {
         return id;
     }
@@ -37,6 +35,9 @@ public class Endereco {
         return cep;
     }
     public void setCep(String cep) {
+        if (!cep.matches("\\d{8}")) {
+            throw new IllegalArgumentException("CEP inválido. Deve conter 8 dígitos numéricos.");
+        }
         this.cep = cep;
     }
 
@@ -82,7 +83,8 @@ public class Endereco {
         this.pais = pais;
     }
 
-    //toString
+    // toString
+    @Override
     public String toString() {
         return String.format("""
             Endereco:
@@ -93,6 +95,7 @@ public class Endereco {
                 Bairro = %s
                 Cidade = %s
                 Estado = %s
-                Pais = %s""", this.id, this.cep, this.rua, this.numero, this.bairro, this.cidade, this.estado, this.pais);
+                Pais = %s""",
+                this.id, this.cep, this.rua, this.numero, this.bairro, this.cidade, this.estado, this.pais);
     }
 }

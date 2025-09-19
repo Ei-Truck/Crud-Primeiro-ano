@@ -3,23 +3,23 @@ package org.eitruck.model;
 //Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
 //ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
 public class Administrador {
-    //atributos
+    // atributos
     private int id;
     private String cpf;
     private String nome;
     private String email;
     private String senha;
 
-    //método construtor
-    public Administrador(int id, String cpf, String nome, String email, String senha){
+    // método construtor
+    public Administrador(int id, String cpf, String nome, String email, String senha) {
         this.id = id;
-        this.cpf = cpf;
+        setCpf(cpf);       // validação aplicada
         this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+        setEmail(email);   // validação aplicada
+        setSenha(senha);   // validação aplicada
     }
 
-    //getters e setters
+    // getters e setters
     public int getId() {
         return id;
     }
@@ -31,6 +31,10 @@ public class Administrador {
         return cpf;
     }
     public void setCpf(String cpf) {
+        // regex para aceitar somente 11 dígitos numéricos
+        if (!cpf.matches("\\d{11}")) {
+            throw new IllegalArgumentException("CPF inválido. Deve conter 11 dígitos numéricos.");
+        }
         this.cpf = cpf;
     }
 
@@ -45,6 +49,10 @@ public class Administrador {
         return email;
     }
     public void setEmail(String email) {
+        // regex para validar email
+        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            throw new IllegalArgumentException("Email inválido.");
+        }
         this.email = email;
     }
 
@@ -52,11 +60,16 @@ public class Administrador {
         return senha;
     }
     public void setSenha(String senha) {
+        // regex para aceitar no mínimo 8 caracteres, pelo menos 1 letra e 1 número
+        if (!senha.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
+            throw new IllegalArgumentException("Senha inválida. Deve ter no mínimo 8 caracteres, contendo letras e números.");
+        }
         this.senha = senha;
     }
 
-    //toString
-    public String toSring() {
+    // toString
+    @Override
+    public String toString() {
         return String.format("""
             Administrador:
                 Id = %d
