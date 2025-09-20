@@ -31,9 +31,15 @@ public class Administrador {
         return cpf;
     }
     public void setCpf(String cpf) {
-        // regex para aceitar somente 11 dígitos numéricos
-        if (!cpf.matches("\\d{11}")) {
+        // regex para aceitar somente 11 dígitos numéricos (com ou sem pontos/hífen)
+        if (!cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")) {
             throw new IllegalArgumentException("CPF inválido. Deve conter 11 dígitos numéricos.");
+        }
+        // remove pontos e hífen
+        String numeros = cpf.replaceAll("\\D", "");
+        // verifica se todos os dígitos são iguais ou termina em 00
+        if (numeros.chars().distinct().count() == 1 || numeros.endsWith("00")) {
+            throw new IllegalArgumentException("CPF inválido.");
         }
         this.cpf = cpf;
     }
