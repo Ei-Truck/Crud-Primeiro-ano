@@ -44,17 +44,18 @@ public class Analista {
         return cpf;
     }
     public void setCpf(String cpf) {
-        // regex para aceitar somente 11 dígitos numéricos (com ou sem pontos/hífen)
+        // regex para aceitar CPF digitado com ou sem pontos/hífen
         if (!cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")) {
             throw new IllegalArgumentException("CPF inválido. Deve conter 11 dígitos numéricos.");
         }
-        // remove pontos e hífen
+        // remove pontos e hífen para padronizar
         String numeros = cpf.replaceAll("\\D", "");
         // verifica se todos os dígitos são iguais ou termina em 00
         if (numeros.chars().distinct().count() == 1 || numeros.endsWith("00")) {
             throw new IllegalArgumentException("CPF inválido.");
         }
-        this.cpf = cpf;
+        // armazena SEM formatação
+        this.cpf = numeros;
     }
 
     public String getEmail() {
@@ -88,10 +89,10 @@ public class Analista {
         return telefone;
     }
     public void setTelefone(String telefone) {
-        if (!telefone.matches("\\d{10,11}")) {
-            throw new IllegalArgumentException("Telefone inválido. Deve conter 10 ou 11 dígitos.");
+        if (!telefone.matches("\\([0-9]{2}\\) ?[0-9]{5}-[0-9]{4}")) {
+            throw new IllegalArgumentException("Telefone inválido. Formato esperado: (XX) 9XXXX-XXXX");
         }
-        this.telefone = telefone;
+        this.telefone = telefone.replaceAll("\\D", "");
     }
 
     public LocalDate getDt_contratacao() {
