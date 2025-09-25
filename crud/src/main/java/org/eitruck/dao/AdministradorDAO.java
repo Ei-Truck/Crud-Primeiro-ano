@@ -1,71 +1,275 @@
 package org.eitruck.dao;
 
+import org.eitruck.config.Conexao;
 import org.eitruck.model.Administrador;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdministradorDAO {
-    private Connection connection;
-
-    public AdministradorDAO(Connection connection) {
-        this.connection = connection;
+public class AdministradorDAO extends DAO {
+    public AdministradorDAO() throws SQLException, ClassNotFoundException{
+        super();
     }
 
-    // CREATE
-    public void inserir(Administrador obj) throws SQLException {
-        // Ajuste os campos conforme o banco de dados
-        String sql = "INSERT INTO administrador VALUES (...)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            // TODO: mapear atributos do objeto para stmt.setXXX
+    public boolean cadastrar(Administrador admin) {
+        String comando = """
+            INSERT INTO administrador (id, cpf, nome_completo, email, senha)
+            VALUES (?, ?, ?, ?, ?)""";
+
+        try {
+            conn = conexao.conectar();
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setInt(1, admin.getId());
+            pstmt.setString(2, admin.getCpf());
+            pstmt.setString(3, admin.getNomeCompleto());
+            pstmt.setString(4, admin.getEmail());
+            pstmt.setString(5, admin.getSenha());
+            int execucao = pstmt.executeUpdate();
+            return execucao > 0;
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return false;
+        }
+        finally {
+            conexao.desconectar(conn);
         }
     }
+    public int alterarNomeCompleto(Administrador admin, String novoNomeCompleto) {
+        String comando = """
+            UPDATE administrador
+            SET nome_completo = ?
+            WHERE id = ?""";
 
-    // READ - buscar por id
-    public Administrador buscarPorId(int id) throws SQLException {
-        String sql = "SELECT * FROM administrador WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                // TODO: mapear ResultSet -> objeto Administrador
-                return new Administrador(/* atributos */);
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setString(1, novoNomeCompleto);
+            pstmt.setInt(2, admin.getId());
+            int execucao = pstmt.executeUpdate();
+            if (execucao > 0) {
+                admin.setNomeCompleto(novoNomeCompleto);
+                return 1;
+            }
+            else {
+                return 0;
             }
         }
-        return null;
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1;
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
     }
+    public int alterarEmail(Administrador admin, String novoEmail) {
+        String comando = """
+            UPDATE administrador
+            SET email = ?
+            WHERE id = ?""";
 
-    // READ - listar todos
-    public List<Administrador> listarTodos() throws SQLException {
-        List<Administrador> lista = new ArrayList<>();
-        String sql = "SELECT * FROM administrador";
-        try (Statement stmt = connection.createStatement()) {
-            ResultSet rs = stmt.executeQuery(sql);
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setString(1, novoEmail);
+            pstmt.setInt(2, admin.getId());
+            int execucao = pstmt.executeUpdate();
+            if (execucao > 0) {
+                admin.setEmail(novoEmail);
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1;
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+    }
+    public int alterarSenha(Administrador admin, String novaSenha) {
+        String comando = """
+            UPDATE administrador
+            SET senha = ?
+            WHERE id = ?""";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setString(1, novaSenha);
+            pstmt.setInt(2, admin.getId());
+            int execucao = pstmt.executeUpdate();
+            if (execucao > 0) {
+                admin.setSenha(novaSenha);
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1;
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+    }
+    public int apagar(Administrador admin, int idAdmin) {
+        String comando = """
+            DELETE FROM administrador
+            WHERE id = ?""";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setInt(1, idAdmin);
+            int execucao = pstmt.executeUpdate();
+            if (execucao > 0) {
+                admin = null;
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return -1;
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+    }
+    public List<Administrador> buscarPorId(int idAdmin) {
+        ResultSet rs;
+        List<Administrador> listaRetorno = new ArrayList<>();
+        String comando = """
+            SELECT * FROM administrador
+            WHERE id = ?""";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setInt(1, idAdmin);
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
             while (rs.next()) {
-                // TODO: mapear ResultSet -> objeto Administrador
-                Administrador obj = new Administrador(/* atributos */);
-                lista.add(obj);
+                Administrador admin = new Administrador(rs.getInt("id"), rs.getString("cpf"), rs.getString("nome_completo"), rs.getString("email"), rs.getString("senha"));
+                listaRetorno.add(admin);
             }
+            return listaRetorno;
         }
-        return lista;
-    }
-
-    // UPDATE
-    public void atualizar(Administrador obj) throws SQLException {
-        String sql = "UPDATE administrador SET ... WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            // TODO: mapear atributos
-            stmt.executeUpdate();
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        }
+        finally {
+            conexao.desconectar(conn);
         }
     }
+    public List<Administrador> buscarPorCpf(String cpfAdmin) {
+        ResultSet rs;
+        List<Administrador> listaRetorno = new ArrayList<>();
+        String comando = """
+            SELECT * FROM administrador
+            WHERE cpf = ?""";
 
-    // DELETE
-    public void deletar(int id) throws SQLException {
-        String sql = "DELETE FROM administrador WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setString(1, cpfAdmin);
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                Administrador admin = new Administrador(rs.getInt("id"), rs.getString("cpf"), rs.getString("nome_completo"), rs.getString("email"), rs.getString("senha"));
+                listaRetorno.add(admin);
+            }
+            return listaRetorno;
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+    }
+    public List<Administrador> buscarNomeCompleto(String nomeCompletoAdmin) {
+        ResultSet rs;
+        List<Administrador> listaRetorno = new ArrayList<>();
+        String comando = """
+            SELECT * FROM administrador
+            WHERE nome_completo = ?""";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setString(1, nomeCompletoAdmin);
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                Administrador admin = new Administrador(rs.getInt("id"), rs.getString("cpf"), rs.getString("nome_completo"), rs.getString("email"), rs.getString("senha"));
+                listaRetorno.add(admin);
+            }
+            return listaRetorno;
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+    }
+    public List<Administrador> buscarPorEmail(String emailAdmin) {
+        ResultSet rs;
+        List<Administrador> listaRetorno = new ArrayList<>();
+        String comando = """
+            SELECT * FROM administrador
+            WHERE id = ?""";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setString(1, emailAdmin);
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                Administrador admin = new Administrador(rs.getInt("id"), rs.getString("cpf"), rs.getString("nome_completo"), rs.getString("email"), rs.getString("senha"));
+                listaRetorno.add(admin);
+            }
+            return listaRetorno;
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        }
+        finally {
+            conexao.desconectar(conn);
+        }
+    }
+    public List<Administrador> buscarPorSenha(String senhaAdmin) {
+        ResultSet rs;
+        List<Administrador> listaRetorno = new ArrayList<>();
+        String comando = """
+            SELECT * FROM administrador
+            WHERE id = ?""";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(comando);
+            pstmt.setString(1, senhaAdmin);
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                Administrador admin = new Administrador(rs.getInt("id"), rs.getString("cpf"), rs.getString("nome_completo"), rs.getString("email"), rs.getString("senha"));
+                listaRetorno.add(admin);
+            }
+            return listaRetorno;
+        }
+        catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        }
+        finally {
+            conexao.desconectar(conn);
         }
     }
 }
