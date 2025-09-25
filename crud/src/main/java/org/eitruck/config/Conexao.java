@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Conexao {
-    //atributo Connection
-    Connection conn;
-
     //carrega o .env
     Dotenv dotenv = Dotenv.load();
 
@@ -22,19 +19,18 @@ public class Conexao {
 
     //método para conectar o código com o banco de dados
     public Connection conectar() {
+        Connection conn = null;
         try {
             conn = DriverManager.getConnection("jdbc:postgresql://" + hostBd + ":" + portaBd + "/" + nomeBd, usuarioBd, senhaBd);
-            return conn;
         }
         catch (SQLException sqle) {
-            System.out.println("Exceção SQL identificada: ");
             sqle.printStackTrace();
         }
         return conn;
     }
 
     //método para desconectar o código com o banco de dados
-    public boolean desconectar() {
+    public boolean desconectar(Connection conn) {
         try {
             if (conn != null && !conn.isClosed()) {
                 conn.close();
@@ -42,7 +38,6 @@ public class Conexao {
             }
         }
         catch (SQLException sqle) {
-            System.out.println("Exceção identificada ao desconectar o Banco de Dados");
             sqle.printStackTrace();
         }
         return false;
