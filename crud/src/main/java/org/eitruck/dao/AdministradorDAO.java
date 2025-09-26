@@ -1,6 +1,5 @@
 package org.eitruck.dao;
 
-import org.eitruck.config.Conexao;
 import org.eitruck.model.Administrador;
 
 import java.sql.*;
