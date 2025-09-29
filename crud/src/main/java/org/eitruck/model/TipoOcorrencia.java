@@ -1,5 +1,7 @@
 package org.eitruck.model;
 
+import org.eitruck.util.Uteis;
+
 //Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
 //ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
 public class TipoOcorrencia {
@@ -10,9 +12,9 @@ public class TipoOcorrencia {
 
     //método construtor
     public TipoOcorrencia(int id, String tipo_evento, int gravidade) {
-        this.id = id;
+        setId(id);
         this.tipo_evento = tipo_evento;
-        setGravidade(gravidade);     // validação
+        setGravidade(gravidade);
     }
 
     //getters e setters
@@ -20,7 +22,7 @@ public class TipoOcorrencia {
         return id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.id = Uteis.validarId(id);
     }
 
     public String getTipo_evento() {
@@ -34,10 +36,7 @@ public class TipoOcorrencia {
         return gravidade;
     }
     public void setGravidade(int gravidade) {
-        if (gravidade < 1 || gravidade > 10) {
-            throw new IllegalArgumentException("Gravidade inválida. Deve estar entre 1 e 10.");
-        }
-        this.gravidade = gravidade;
+        this.gravidade = Uteis.validarGravidade(gravidade);
     }
 
     //toString

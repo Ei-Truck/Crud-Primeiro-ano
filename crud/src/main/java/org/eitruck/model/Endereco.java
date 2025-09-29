@@ -1,5 +1,7 @@
 package org.eitruck.model;
 
+import org.eitruck.util.Uteis;
+
 public class Endereco {
     // atributos
     private int id;
@@ -13,8 +15,8 @@ public class Endereco {
 
     // construtor
     public Endereco(int id, String cep, String rua, int numero, String bairro, String cidade, String estado, String pais) {
-        this.id = id;
-        setCep(cep); // validação
+        setId(id);
+        setCep(cep);
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -28,17 +30,14 @@ public class Endereco {
         return id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.id = Uteis.validarId(id);
     }
 
     public String getCep() {
         return cep;
     }
     public void setCep(String cep) {
-        if (!cep.matches("\\d{8}")) {
-            throw new IllegalArgumentException("CEP inválido. Deve conter 8 dígitos numéricos.");
-        }
-        this.cep = cep;
+        this.cep = Uteis.validarCep(cep);
     }
 
     public String getRua() {

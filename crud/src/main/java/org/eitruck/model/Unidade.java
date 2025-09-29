@@ -1,5 +1,7 @@
 package org.eitruck.model;
 
+import org.eitruck.util.Uteis;
+
 public class Unidade {
     // atributos
     private int id;
@@ -9,10 +11,10 @@ public class Unidade {
 
     // construtor
     public Unidade(int id, String nome, int id_segmento, int id_endereco) {
-        this.id = id;
+        setId(id);
         this.nome = nome;
-        setId_segmento(id_segmento);   // validação
-        setId_endereco(id_endereco);   // validação
+        setId_segmento(id_segmento);
+        setId_endereco(id_endereco);
     }
 
     // getters e setters
@@ -20,7 +22,7 @@ public class Unidade {
         return id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.id = Uteis.validarId(id);
     }
 
     public String getNome() {
@@ -34,20 +36,14 @@ public class Unidade {
         return id_segmento;
     }
     public void setId_segmento(int id_segmento) {
-        if (id_segmento <= 0) {
-            throw new IllegalArgumentException("ID do segmento inválido. Deve ser positivo.");
-        }
-        this.id_segmento = id_segmento;
+        this.id_segmento = Uteis.validarId(id_segmento);
     }
 
     public int getId_endereco() {
         return id_endereco;
     }
     public void setId_endereco(int id_endereco) {
-        if (id_endereco <= 0) {
-            throw new IllegalArgumentException("ID do endereço inválido. Deve ser positivo.");
-        }
-        this.id_endereco = id_endereco;
+        this.id_endereco = Uteis.validarId(id_endereco);
     }
 
     // toString

@@ -1,6 +1,7 @@
 package org.eitruck.model;
 
 import java.time.LocalDate;
+import org.eitruck.util.Uteis;
 
 public class Analista {
     // atributos
@@ -15,13 +16,13 @@ public class Analista {
 
     // construtor
     public Analista(int id, String nome, String cpf, String email, String senha, String cargo, String telefone, LocalDate dt_contratacao) {
-        this.id = id;
+        setId(id);
         this.nome = nome;
-        setCpf(cpf);         // validação
-        setEmail(email);     // validação
-        setSenha(senha);     // validação
+        setCpf(cpf);
+        setEmail(email);
+        setSenha(senha);
         this.cargo = cargo;
-        setTelefone(telefone); // validação
+        setTelefone(telefone);
         this.dt_contratacao = dt_contratacao;
     }
 
@@ -30,7 +31,7 @@ public class Analista {
         return id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.id = Uteis.validarId(id);
     }
 
     public String getNome() {
@@ -44,38 +45,21 @@ public class Analista {
         return cpf;
     }
     public void setCpf(String cpf) {
-        // regex para aceitar CPF digitado com ou sem pontos/hífen
-        if (!cpf.matches("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")) {
-            throw new IllegalArgumentException("CPF inválido. Deve conter 11 dígitos numéricos.");
-        }
-        // remove pontos e hífen para padronizar
-        String numeros = cpf.replaceAll("\\D", "");
-        // verifica se todos os dígitos são iguais ou termina em 00
-        if (numeros.chars().distinct().count() == 1 || numeros.endsWith("00")) {
-            throw new IllegalArgumentException("CPF inválido.");
-        }
-        // armazena SEM formatação
-        this.cpf = numeros;
+        this.cpf = Uteis.validarCpf(cpf);
     }
 
     public String getEmail() {
         return email;
     }
     public void setEmail(String email) {
-        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
-            throw new IllegalArgumentException("Email inválido.");
-        }
-        this.email = email;
+        this.email = Uteis.validarEmail(email);
     }
 
     public String getSenha() {
         return senha;
     }
     public void setSenha(String senha) {
-        if (!senha.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
-            throw new IllegalArgumentException("Senha inválida. Mínimo 8 caracteres, incluindo letras e números.");
-        }
-        this.senha = senha;
+        this.senha = validarSenha(senha);
     }
 
     public String getCargo() {
@@ -89,10 +73,7 @@ public class Analista {
         return telefone;
     }
     public void setTelefone(String telefone) {
-        if (!telefone.matches("\\([0-9]{2}\\) ?[0-9]{5}-[0-9]{4}")) {
-            throw new IllegalArgumentException("Telefone inválido. Formato esperado: (XX) 9XXXX-XXXX");
-        }
-        this.telefone = telefone.replaceAll("\\D", "");
+        this.telefone = Uteis.validarTelefone(telefone);
     }
 
     public LocalDate getDt_contratacao() {
