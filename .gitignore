@@ -16,7 +16,7 @@ crud/.idea/jarRepositories.xml
 *.iws
 *.iml
 *.ipr
-.idea
+.idea/
 
 ### Eclipse ###
 .apt_generated
