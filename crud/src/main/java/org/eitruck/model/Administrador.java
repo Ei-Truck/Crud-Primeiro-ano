@@ -8,15 +8,15 @@ public class Administrador {
     // atributos
     private int id;
     private String cpf;
-    private String nome;
+    private String nomeCompleto;
     private String email;
     private String senha;
 
     // método construtor
-    public Administrador(int id, String cpf, String nome, String email, String senha) {
+    public Administrador(int id, String cpf, String nomeCompleto, String email, String senha) {
         setId(id);
         setCpf(cpf);
-        this.nome = nome;
+        this.nomeCompleto = nomeCompleto;
         setEmail(email);
         setSenha(senha);
     }
@@ -36,11 +36,11 @@ public class Administrador {
         this.cpf = Uteis.validarCpf(cpf);
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeCompleto() {
+        return nomeCompleto;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
 
     public String getEmail() {
@@ -63,8 +63,9 @@ public class Administrador {
         return String.format("""
             Administrador:
                 Id = %d
+                Cpf = %s
                 Nome = %s
                 Email = %s
-                Senha = %s""", this.id, this.nome, this.email, this.senha);
+                Senha = %s""", this.id, this.cpf, this.nomeCompleto, this.email, this.senha);
     }
 }

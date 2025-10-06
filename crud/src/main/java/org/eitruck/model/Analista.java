@@ -6,24 +6,28 @@ import org.eitruck.util.Uteis;
 public class Analista {
     // atributos
     private int id;
-    private String nome;
+    private int idUnidade;
     private String cpf;
+    private String nomeCompleto;
+    private LocalDate dtContratacao;
     private String email;
     private String senha;
     private String cargo;
     private String telefone;
-    private LocalDate dt_contratacao;
+
 
     // construtor
-    public Analista(int id, String nome, String cpf, String email, String senha, String cargo, String telefone, LocalDate dt_contratacao) {
+    public Analista(int id, int idUnidade, String nomeCompleto, String cpf, LocalDate dtContratacao, String email, String senha, String cargo, String telefone) {
         setId(id);
-        this.nome = nome;
+        setIdUnidade(idUnidade);
         setCpf(cpf);
+        this.nomeCompleto = nomeCompleto;
+        this.dtContratacao = dtContratacao;
         setEmail(email);
         setSenha(senha);
         this.cargo = cargo;
         setTelefone(telefone);
-        this.dt_contratacao = dt_contratacao;
+
     }
 
     // getters e setters
@@ -34,11 +38,11 @@ public class Analista {
         this.id = Uteis.validarId(id);
     }
 
-    public String getNome() {
-        return nome;
+    public int getIdUnidade() {
+        return idUnidade;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdUnidade(int idUnidade) {
+        this.idUnidade = Uteis.validarId(idUnidade);
     }
 
     public String getCpf() {
@@ -46,6 +50,20 @@ public class Analista {
     }
     public void setCpf(String cpf) {
         this.cpf = Uteis.validarCpf(cpf);
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public LocalDate getDtContratacao() {
+        return dtContratacao;
+    }
+    public void setDtContratacao(LocalDate dt_contratacao) {
+        this.dtContratacao = dt_contratacao;
     }
 
     public String getEmail() {
@@ -59,7 +77,7 @@ public class Analista {
         return senha;
     }
     public void setSenha(String senha) {
-        this.senha = validarSenha(senha);
+        this.senha = Uteis.validarSenha(senha);
     }
 
     public String getCargo() {
@@ -76,25 +94,18 @@ public class Analista {
         this.telefone = Uteis.validarTelefone(telefone);
     }
 
-    public LocalDate getDt_contratacao() {
-        return dt_contratacao;
-    }
-    public void setDt_contratacao(LocalDate dt_contratacao) {
-        this.dt_contratacao = dt_contratacao;
-    }
-
     // toString
     @Override
     public String toString() {
         return String.format("""
             Analista:
                 Id = %d
+                Id da Unidade = %d
+                Cpf = %s
                 Nome = %s
-                CPF = %s
+                Data de Contratação = %s
                 Email = %s
                 Cargo = %s
-                Telefone = %s
-                Data de Contratação = %s""",
-                this.id, this.nome, this.cpf, this.email, this.cargo, this.telefone, this.dt_contratacao);
+                Telefone = %s""", this.id, this.idUnidade, this.cpf, this.nomeCompleto, this.dtContratacao, this.email, this.cargo, this.telefone);
     }
 }

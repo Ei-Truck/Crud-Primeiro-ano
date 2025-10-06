@@ -5,14 +5,14 @@ import org.eitruck.util.Uteis;
 public class Unidade {
     // atributos
     private int id;
-    private String nome;
+    private String nomeCompleto;
     private int id_segmento;
     private int id_endereco;
 
     // construtor
-    public Unidade(int id, String nome, int id_segmento, int id_endereco) {
+    public Unidade(int id, String nomeCompleto, int id_segmento, int id_endereco) {
         setId(id);
-        this.nome = nome;
+        this.nomeCompleto = nomeCompleto;
         setId_segmento(id_segmento);
         setId_endereco(id_endereco);
     }
@@ -26,10 +26,10 @@ public class Unidade {
     }
 
     public String getNome() {
-        return nome;
+        return nomeCompleto;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
 
     public int getId_segmento() {
@@ -55,6 +55,6 @@ public class Unidade {
                 Nome = %s
                 ID Segmento = %d
                 ID Endereco = %d""",
-            this.id, this.nome, this.id_segmento, this.id_endereco);
+            this.id, this.nomeCompleto, this.id_segmento, this.id_endereco);
     }
 }
