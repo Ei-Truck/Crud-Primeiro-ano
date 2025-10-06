@@ -88,13 +88,12 @@ public class Endereco {
         return String.format("""
             Endereco:
                 Id = %d
-                CEP = %s
+                Cep = %s
                 Rua = %s
                 Numero = %d
                 Bairro = %s
                 Cidade = %s
                 Estado = %s
-                Pais = %s""",
-                this.id, this.cep, this.rua, this.numero, this.bairro, this.cidade, this.estado, this.pais);
+                Pais = %s""", this.id, this.cep, this.rua, this.numero, this.bairro, this.cidade, this.estado, this.pais);
     }
 }

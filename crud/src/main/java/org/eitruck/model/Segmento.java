@@ -7,13 +7,13 @@ import org.eitruck.util.Uteis;
 public class Segmento {
     //atributos
     private int id;
-    private String nomeCompleto;
+    private String nome;
     private String descricao;
 
     //método construtor
-    public Segmento(int id, String nomeCompleto, String descricao) {
+    public Segmento(int id, String nome, String descricao) {
         setId(id);
-        this.nomeCompleto = nomeCompleto;
+        this.nome = nome;
         this.descricao = descricao;
     }
 
@@ -26,10 +26,10 @@ public class Segmento {
     }
 
     public String getNome() {
-        return nomeCompleto;
+        return nome;
     }
-    public void setNome(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -45,6 +45,6 @@ public class Segmento {
             Segmento:
                 Id = %d
                 Nome = %s
-                Descricao = %s""", this.id, this.nomeCompleto, this.descricao);
+                Descricao = %s""", this.id, this.nome, this.descricao);
     }
 }
