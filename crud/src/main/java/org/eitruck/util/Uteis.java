@@ -41,11 +41,11 @@ public class Uteis {
         return cep.replaceAll("\\D", ""); // só números, mesmo que venha com "-"
     }
 
-    public static int validarGravidade(int gravidade) {
-        if (gravidade < 1 || gravidade > 10) {
+    public static int validarPontuacao(int pontuacao) {
+        if (pontuacao < 1 || pontuacao > 10) {
             throw new IllegalArgumentException("Gravidade inválida. Deve estar entre 1 e 10.");
         }
-        return gravidade;
+        return pontuacao;
     }
 
     public static int validarId(int id) {

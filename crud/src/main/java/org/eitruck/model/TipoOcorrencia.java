@@ -7,14 +7,16 @@ import org.eitruck.util.Uteis;
 public class TipoOcorrencia {
     //atributos
     private int id;
-    private String tipo_evento;
-    private int gravidade;
+    private String tipoEvento;
+    private int pontuacao;
+    private String gravidade;
 
     //método construtor
-    public TipoOcorrencia(int id, String tipo_evento, int gravidade) {
+    public TipoOcorrencia(int id, String tipoEvento, int pontuacao, String gravidade) {
         setId(id);
-        this.tipo_evento = tipo_evento;
-        setGravidade(gravidade);
+        this.tipoEvento = tipoEvento;
+        setPontuacao(pontuacao);
+        this.gravidade = gravidade;
     }
 
     //getters e setters
@@ -25,18 +27,25 @@ public class TipoOcorrencia {
         this.id = Uteis.validarId(id);
     }
 
-    public String getTipo_evento() {
-        return tipo_evento;
+    public String getTipoEvento() {
+        return tipoEvento;
     }
-    public void setTipo_evento(String tipo_evento) {
-        this.tipo_evento = tipo_evento;
+    public void setTipoEvento(String tipoEvento) {
+        this.tipoEvento = this.tipoEvento;
     }
 
-    public int getGravidade() {
+    public int getPontuacao() {
+        return pontuacao;
+    }
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = Uteis.validarPontuacao(pontuacao);
+    }
+
+    public String getGravidade() {
         return gravidade;
     }
-    public void setGravidade(int gravidade) {
-        this.gravidade = Uteis.validarGravidade(gravidade);
+    public void setGravidade(String gravidade) {
+        this.gravidade = this.gravidade;
     }
 
     //toString
@@ -45,6 +54,7 @@ public class TipoOcorrencia {
             Tipo de Ocorrencia:
                 Id = %d
                 Tipo de Evento = %s
-                Gravidade = %d""", this.id, this.tipo_evento, this.gravidade);
+                Pontuação = %d
+                Gravidade = %s""", this.id, this.tipoEvento, this.pontuacao, this.gravidade);
     }
 }
