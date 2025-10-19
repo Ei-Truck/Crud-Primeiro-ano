@@ -17,7 +17,7 @@ public class Analista {
 
 
     // construtor
-    public Analista(int id, int idUnidade, String nomeCompleto, String cpf, LocalDate dtContratacao, String email, String senha, String cargo, String telefone) {
+    public Analista(int id, int idUnidade, String cpf, String nomeCompleto, LocalDate dtContratacao, String email, String senha, String cargo, String telefone) {
         setId(id);
         setIdUnidade(idUnidade);
         setCpf(cpf);
@@ -62,8 +62,8 @@ public class Analista {
     public LocalDate getDtContratacao() {
         return dtContratacao;
     }
-    public void setDtContratacao(LocalDate dt_contratacao) {
-        this.dtContratacao = dt_contratacao;
+    public void setDtContratacao(LocalDate dtContratacao) {
+        this.dtContratacao = dtContratacao;
     }
 
     public String getEmail() {

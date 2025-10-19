@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SegmentoDAO extends DAO {
-    public SegmentoDAO() throws SQLException, ClassNotFoundException{
+    public SegmentoDAO() {
         super();
     }
 

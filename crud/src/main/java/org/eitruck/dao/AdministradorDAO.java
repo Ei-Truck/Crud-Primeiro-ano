@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdministradorDAO extends DAO {
-    public AdministradorDAO() throws SQLException, ClassNotFoundException{
+    public AdministradorDAO() {
         super();
     }
 

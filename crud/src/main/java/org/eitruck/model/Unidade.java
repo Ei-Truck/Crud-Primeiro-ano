@@ -5,16 +5,16 @@ import org.eitruck.util.Uteis;
 public class Unidade {
     // atributos
     private int id;
-    private String nomeCompleto;
-    private int id_segmento;
-    private int id_endereco;
+    private String nome;
+    private int idSegmento;
+    private int idEndereco;
 
     // construtor
-    public Unidade(int id, String nomeCompleto, int id_segmento, int id_endereco) {
+    public Unidade(int id, int idSegmento, int idEndereco, String nome) {
         setId(id);
-        this.nomeCompleto = nomeCompleto;
-        setId_segmento(id_segmento);
-        setId_endereco(id_endereco);
+        this.nome = nome;
+        setIdSegmento(idSegmento);
+        setIdEndereco(idEndereco);
     }
 
     // getters e setters
@@ -26,24 +26,24 @@ public class Unidade {
     }
 
     public String getNome() {
-        return nomeCompleto;
+        return nome;
     }
     public void setNome(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+        this.nome = nomeCompleto;
     }
 
-    public int getId_segmento() {
-        return id_segmento;
+    public int getIdSegmento() {
+        return idSegmento;
     }
-    public void setId_segmento(int id_segmento) {
-        this.id_segmento = Uteis.validarId(id_segmento);
+    public void setIdSegmento(int idSegmento) {
+        this.idSegmento = Uteis.validarId(idSegmento);
     }
 
-    public int getId_endereco() {
-        return id_endereco;
+    public int getIdEndereco() {
+        return idEndereco;
     }
-    public void setId_endereco(int id_endereco) {
-        this.id_endereco = Uteis.validarId(id_endereco);
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = Uteis.validarId(idEndereco);
     }
 
     // toString
@@ -55,6 +55,6 @@ public class Unidade {
                 Nome = %s
                 ID Segmento = %d
                 ID Endereco = %d""",
-            this.id, this.nomeCompleto, this.id_segmento, this.id_endereco);
+            this.id, this.nome, this.idSegmento, this.idEndereco);
     }
 }
