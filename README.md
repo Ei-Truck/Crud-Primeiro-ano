@@ -1,4 +1,4 @@
-# ⚙️ CRUD EiTruck
+# ⚙️ CRUD - EiTruck
 
 Este repositório contém a **implementação da camada de persistência do sistema Ei Truck**, responsável pela **conexão com o banco de dados, modelagem das entidades e operações CRUD (Create, Read, Update, Delete)** realizadas pelas classes DAO.
 
@@ -54,6 +54,50 @@ Cada entidade possui uma classe DAO dedicada para gerenciar as operações de ba
 - **Java 17+**
 
 ---
+
+## Instalação
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/Ei-Truck/Crud-primeiro-ano.git
+    ```
+2.  **Entre no diretório do projeto:**
+    ```bash
+    cd Crud-primeiro-ano
+    ```
+---
+
+## Estrutura de Pastas
+```
+Crud-Primeiro-ano/
+├── crud/
+│   ├── src/
+│       ├── main/
+│           ├── java/
+│               ├── org/
+│                   ├── example/
+│                       ├── eitruck/
+│                           ├── conexao/
+│                           │   └── Conexao.java
+│                           ├── dao/
+│                           │   ├── AdministradorDAO.java
+│                           │   ├── AnalistaDAO.java
+│                           │   ├── EnderecoDAO.java
+│                           │   ├── SegmentoDAO.java
+│                           │   ├── TipoOcorrenciaDAO.java
+│                           │   └── UnidadeDAO.java
+│                           ├── model/
+│                               ├── Administrador.java
+│                               ├── Analista.java
+│                               ├── Endereco.java
+│                               ├── Segmento.java
+│                               ├── TipoOcorrencia.java
+│                               └── Unidade.java
+├── .gitignore
+├── LICENSE
+├── README.md
+└── pom.xml
+```
 
 ## Autores
 
