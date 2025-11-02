@@ -1,35 +1,40 @@
-package org.eitruck.config;
+package org.example.eitruck.conexao;
+
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-//dependencias do .env estão no pom.xml na raiz do projeto
-import io.github.cdimascio.dotenv.Dotenv;
 
 public class Conexao {
-    //carrega o .env
+    // Carregar o .env
     Dotenv dotenv = Dotenv.load();
 
-    //variáveis do .env
+    // Variáveis do .env
     String hostBd = dotenv.get("HOST_BD");
     String nomeBd = dotenv.get("NOME_BD");
-    String usuarioBd = dotenv.get("USUARIO_BD");
+    String usuarioBd = dotenv.get("NOME_USUARIO_BD");
     String portaBd = dotenv.get("PORTA_BD");
     String senhaBd = dotenv.get("SENHA_BD");
 
-    //método para conectar o código com o banco de dados
+    // Método para conectar o código com o banco de dados
     public Connection conectar() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://" + hostBd + ":" + portaBd + "/" + nomeBd, usuarioBd, senhaBd);
+            Class.forName("org.postgresql.Driver");
+
+            conn = DriverManager.getConnection("jdbc:postgresql://" + hostBd + ":" + portaBd + "/" + nomeBd + "?sslmode=require", usuarioBd, senhaBd);
         }
         catch (SQLException sqle) {
             sqle.printStackTrace();
         }
+        catch (ClassNotFoundException e) {
+            System.err.println("Driver JDBC não encontrado: " + e.getMessage());
+        }
         return conn;
     }
 
-    //método para desconectar o código com o banco de dados
+    // Método para desconectar o código com o banco de dados
     public boolean desconectar(Connection conn) {
         try {
             if (conn != null && !conn.isClosed()) {

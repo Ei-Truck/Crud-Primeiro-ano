@@ -1,9 +1,7 @@
-package org.eitruck.model;
-
-import org.eitruck.util.Uteis;
+package org.example.eitruck.model;
 
 public class Endereco {
-    // atributos
+    // Atributos
     private int id;
     private String cep;
     private String rua;
@@ -13,10 +11,19 @@ public class Endereco {
     private String estado;
     private String pais;
 
-    // construtor
+    // Métodos construtores
     public Endereco(int id, String cep, String rua, int numero, String bairro, String cidade, String estado, String pais) {
-        setId(id);
-        setCep(cep);
+        this.id = id;
+        this.cep = cep;
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+    }
+    public Endereco(String cep, String rua, int numero, String bairro, String cidade, String estado, String pais) {
+        this.cep = cep;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
@@ -25,64 +32,72 @@ public class Endereco {
         this.pais = pais;
     }
 
-    // getters e setters
+    // Getters e setters
+    // Campo ID
     public int getId() {
-        return id;
+        return this.id;
     }
     public void setId(int id) {
-        this.id = Uteis.validarId(id);
+        this.id = id;
     }
 
+    // Campo CEP
     public String getCep() {
-        return cep;
+        return this.cep;
     }
     public void setCep(String cep) {
-        this.cep = Uteis.validarCep(cep);
+        this.cep = cep;
     }
 
+    // Campo rua
     public String getRua() {
-        return rua;
+        return this.rua;
     }
     public void setRua(String rua) {
         this.rua = rua;
     }
 
+    // Campo número
     public int getNumero() {
-        return numero;
+        return this.numero;
     }
     public void setNumero(int numero) {
         this.numero = numero;
     }
 
+    // Campo bairro
     public String getBairro() {
-        return bairro;
+        return this.bairro;
     }
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
+    // Campo cidade
     public String getCidade() {
-        return cidade;
+        return this.cidade;
     }
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
+    // Campo estado
     public String getEstado() {
-        return estado;
+        return this.estado;
     }
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
+    // Campo país
     public String getPais() {
-        return pais;
+        return this.pais;
     }
     public void setPais(String pais) {
         this.pais = pais;
     }
 
-    // toString
+    // Método toString
     @Override
     public String toString() {
         return String.format("""

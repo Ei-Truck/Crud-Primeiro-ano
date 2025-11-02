@@ -1,52 +1,59 @@
-package org.eitruck.model;
-
-import org.eitruck.util.Uteis;
+package org.example.eitruck.model;
 
 public class Unidade {
-    // atributos
+    // Atributos
     private int id;
     private String nome;
     private int idSegmento;
     private int idEndereco;
 
-    // construtor
+    // Métodos construtores
     public Unidade(int id, int idSegmento, int idEndereco, String nome) {
-        setId(id);
+        this.id = id;
+        this.idSegmento = idSegmento;
+        this.idEndereco = idEndereco;
         this.nome = nome;
-        setIdSegmento(idSegmento);
-        setIdEndereco(idEndereco);
+    }
+    public Unidade(int idSegmento, int idEndereco, String nome) {
+        this.nome = nome;
+        this.idSegmento = idSegmento;
+        this.idEndereco = idEndereco;
     }
 
-    // getters e setters
+    // Getters e setters
+    // Campo ID
     public int getId() {
-        return id;
+        return this.id;
     }
     public void setId(int id) {
-        this.id = Uteis.validarId(id);
+        this.id = id;
     }
 
+    // Campo nome
     public String getNome() {
-        return nome;
+        return this.nome;
     }
     public void setNome(String nomeCompleto) {
         this.nome = nomeCompleto;
     }
 
+    // Campo ID do segmento
     public int getIdSegmento() {
-        return idSegmento;
+        return this.idSegmento;
     }
     public void setIdSegmento(int idSegmento) {
-        this.idSegmento = Uteis.validarId(idSegmento);
+        this.idSegmento = idSegmento;
     }
 
+    // Campo ID do endereço
     public int getIdEndereco() {
-        return idEndereco;
+        return this.idEndereco;
     }
     public void setIdEndereco(int idEndereco) {
-        this.idEndereco = Uteis.validarId(idEndereco);
+        this.idEndereco = idEndereco;
     }
 
-    // toString
+    // Método toString
     @Override
     public String toString() {
         return String.format("""
@@ -55,6 +62,6 @@ public class Unidade {
                 Nome = %s
                 ID Segmento = %d
                 ID Endereco = %d""",
-            this.id, this.nome, this.idSegmento, this.idEndereco);
+                this.id, this.nome, this.idSegmento, this.idEndereco);
     }
 }

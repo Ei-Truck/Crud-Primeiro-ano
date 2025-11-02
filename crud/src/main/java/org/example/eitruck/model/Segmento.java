@@ -1,45 +1,49 @@
-package org.eitruck.model;
+package org.example.eitruck.model;
 
-import org.eitruck.util.Uteis;
-
-//Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
-//ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
 public class Segmento {
-    //atributos
+    // Atributos
     private int id;
     private String nome;
     private String descricao;
 
-    //método construtor
+    // Método construtores
     public Segmento(int id, String nome, String descricao) {
-        setId(id);
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+    public Segmento(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    //getters e setters
+    // Getters e setters
+    // Campo ID
     public int getId() {
-        return id;
+        return this.id;
     }
     public void setId(int id) {
-        this.id = Uteis.validarId(id);
+        this.id = id;
     }
 
+    // Campo nome
     public String getNome() {
-        return nome;
+        return this.nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    // Campo descrição
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    //toString
+    // Método toString
+    @Override
     public String toString() {
         return String.format("""
             Segmento:

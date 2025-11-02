@@ -1,54 +1,60 @@
-package org.eitruck.model;
+package org.example.eitruck.model;
 
-import org.eitruck.util.Uteis;
-
-//Obs.: conversar com o Modolo sobre se a lógica de getters e setters é igual nos models
-//ATENÇÃO, REVISAR O USO DE GET E DO TOSTRING NO CASO DE SENHAS (MANTER POR ENQUANTO)
 public class TipoOcorrencia {
-    //atributos
+    // Atributos
     private int id;
     private String tipoEvento;
     private int pontuacao;
     private String gravidade;
 
-    //método construtor
+    // Métodos construtores
     public TipoOcorrencia(int id, String tipoEvento, int pontuacao, String gravidade) {
-        setId(id);
+        this.id = id;
         this.tipoEvento = tipoEvento;
-        setPontuacao(pontuacao);
+        this.pontuacao = pontuacao;
+        this.gravidade = gravidade;
+    }
+    public TipoOcorrencia(String tipoEvento, int pontuacao, String gravidade) {
+        this.tipoEvento = tipoEvento;
+        this.pontuacao = pontuacao;
         this.gravidade = gravidade;
     }
 
-    //getters e setters
+    // Getters e setters
+    // Campo ID
     public int getId() {
-        return id;
+        return this.id;
     }
     public void setId(int id) {
-        this.id = Uteis.validarId(id);
+        this.id = id;
     }
 
+    // Campo tipo de evento
     public String getTipoEvento() {
-        return tipoEvento;
+        return this.tipoEvento;
     }
     public void setTipoEvento(String tipoEvento) {
-        this.tipoEvento = this.tipoEvento;
+        this.tipoEvento = tipoEvento;
     }
 
+    // Campo pontuação
     public int getPontuacao() {
-        return pontuacao;
+        return this.pontuacao;
     }
     public void setPontuacao(int pontuacao) {
-        this.pontuacao = Uteis.validarPontuacao(pontuacao);
+        this.pontuacao = pontuacao;
     }
 
+    // Campo gravidade
     public String getGravidade() {
-        return gravidade;
+        return this.gravidade;
     }
     public void setGravidade(String gravidade) {
-        this.gravidade = this.gravidade;
+        this.gravidade = gravidade;
     }
 
-    //toString
+    // Método toString
+    @Override
     public String toString() {
         return String.format("""
             Tipo de Ocorrencia:
